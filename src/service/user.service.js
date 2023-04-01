@@ -36,8 +36,16 @@ const findByIdUserService = (id) => {
     return user[userId];
 };
 
+// Criando nova tarefa
+const createdUserService = (newUser) => {
+    newUser.id = uuidv4();
+    users.push(newUser);
+    return newUser;
+};
+
 module.exports = {
     findAllUsersService,
     findByIdUserService,
+    createdUserService
 }
 
