@@ -38,11 +38,28 @@ const createdUserController = async (req, res) => {
       res.status(500).send({ message: "An error occurred while creating the user", error: error.message })
     }
   };
+
+  const updateUserController = async (req,res) => {
+    const idParam = req.params.id;
+    const userEdited = req.body;
+    try {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            res.status(400).send({ message: "Invalid or incomplete data", errors: errors.array() })
+        } else {
+            const newUser = await usersService.updateUserService(idParam, userEdited);
+            res.status(200).send({ message: "User updated successfully", data: newUser})
+        };
+      } catch (error) {
+        res.status(500).send({ message: "An error occurred while updating the user", error: error.message })
+      }
+}
   
 
 
 module.exports = {
     findAllUserController,
     findUserByIdController,
-    createdUserController
+    createdUserController,
+    updateUserController
 }
