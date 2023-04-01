@@ -40,7 +40,7 @@ const createdUserController = async (req, res) => {
         .send({ message: 'User created successfully', data: newUser });
     }
   } catch (error) {
-    res.status(500).send({
+    res.status(422).send({
       message: 'An error occurred while creating the user',
       error: error.message,
     });
@@ -78,7 +78,7 @@ const deleteUserController = async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(404).json({ errors: errors.array() });
     }
 
     const deletedUser = usersService.deleteUserService(id);
