@@ -43,9 +43,22 @@ const createdUserService = (newUser) => {
     return newUser;
 };
 
+// Atualizando tarefa
+const updateUserService = (id, userEdited) => {
+    users.forEach((user, index) => {
+        if(user.id === id) {
+            userEdited.id = id;
+            users[index] = userEdited;
+        }
+    });
+    return userEdited;
+};
+
+
 module.exports = {
     findAllUsersService,
     findByIdUserService,
-    createdUserService
+    createdUserService,
+    updateUserService
 }
 
