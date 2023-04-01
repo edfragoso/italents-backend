@@ -36,7 +36,7 @@ const createdUserController = async (req, res) => {
       const user = req.body;
       const newUser = await usersService.createdUserService(user);
       res
-        .status(200)
+        .status(201)
         .send({ message: 'User created successfully', data: newUser });
     }
   } catch (error) {
