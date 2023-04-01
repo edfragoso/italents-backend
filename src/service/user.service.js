@@ -21,9 +21,23 @@ const users = [
     },
 ];
 
+// Buscando todas tarefas da lista
 const findAllUsersService = () => users;
+
+// Buscando por ID
+const findByIdUserService = (id) => {
+    let userId = 0;
+    const user = users.map((user, index) => {
+        if(user.id === id) {
+            userId = index;
+            return user;
+        }
+    });
+    return user[userId];
+};
 
 module.exports = {
     findAllUsersService,
+    findByIdUserService,
 }
 
